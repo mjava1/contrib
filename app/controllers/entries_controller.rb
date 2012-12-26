@@ -10,15 +10,6 @@ class EntriesController < ApplicationController
     end
   end
 
-  def public
-    @entries = Entry.all
-
-    respond_to do |format|
-      format.html # public.html.erb
-      format.json { render json: @entries }
-    end
-  end
-
   # GET /entries/1
   # GET /entries/1.json
   def show
@@ -88,5 +79,14 @@ class EntriesController < ApplicationController
       format.html { redirect_to entries_url }
       format.json { head :no_content }
     end
+  end
+
+  def vote
+    value = 1
+    @entry = Entry.find(params[:id])
+
+    @vote = Vote.create(:name => "Defaulti", :email => "b@a.com")
+    @entry.add_evaluation(:votes, value, @vote)
+    redirect_to :back, notice: "Thanks for voting"
   end
 end

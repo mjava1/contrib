@@ -1,4 +1,10 @@
 %h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
+- @entries.each do |entry|
+
+  %ul
+    %li
+      -#=entry.name
+      -#= image_tag(entry.image_url.to_s, :class =>"img-polaroid")
+      = link_to "vote", vote_entry_path(entry), method: "post", :class => "btn btn-small"
+      = "(" + pluralize(entry.reputation_for(:votes).to_i, "vote") + ")"
+

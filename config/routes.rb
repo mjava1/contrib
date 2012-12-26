@@ -1,6 +1,10 @@
 Compapp::Application.routes.draw do
-  resources :entries
-  match  "public"
+  resources :votes
+
+
+  resources :entries do
+    member{ post :vote }
+  end
 
   resources :categories
 
