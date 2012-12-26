@@ -4,7 +4,7 @@
   %ul
     %li
       -#=entry.name
-      -#= image_tag(entry.image_url.to_s, :class =>"img-polaroid")
+      = image_tag(entry.image_url.to_s, :class =>"img-polaroid")
       = link_to "vote", vote_entry_path(entry), method: "post", :class => "btn btn-small"
       = "(" + pluralize(entry.reputation_for(:votes).to_i, "vote") + ")"
 

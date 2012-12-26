@@ -5,6 +5,6 @@ class Entry < ActiveRecord::Base
   validates_presence_of :caption, :category_id, :email, :image, :name
 
   belongs_to :category
-  #mount_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader
   has_reputation :votes, source: :vote, aggregated_by: :sum
 end
