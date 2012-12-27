@@ -1,5 +1,11 @@
 %p#notice= notice
 
+= image_tag(@entry.image_url.to_s, :class =>"img-polaroid")
+= link_to "vote", vote_entry_path(@entry), method: "post", :class => "btn btn-small"
+
+- if user_signed_in?
+  = "(" + pluralize(@entry.reputation_for(:votes).to_i, "vote") + ")"
+
 %p
   %b Name:
   = @entry.name
@@ -12,10 +18,10 @@
 %p
   %b Category:
   = @entry.category_id
-%p
-  %b Image:
-  = @entry.image
+-#%p
+-#  %b Image:
+-#  = @entry.image
 
-= link_to 'Edit', edit_entry_path(@entry)
-\|
+-#= link_to 'Edit', edit_entry_path(@entry)
+-#\|
 = link_to 'Back', entries_path
