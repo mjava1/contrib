@@ -1,4 +1,25 @@
+-#= link_to "Comp App", root_path, :class => 'brand'
+-#%ul.nav
+-#   %li
+-#      = link_to 'Submit', new_entry_path
+
 = link_to "Comp App", root_path, :class => 'brand'
 %ul.nav
-   %li
-      = link_to 'Submit', new_entry_path
+  %li
+    = link_to 'Submit', new_entry_path
+  - if user_signed_in?
+    %li
+      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    %li
+      = link_to 'Entries', entries_path
+    %li
+      = link_to 'Votes', votes_path
+    %li
+      = link_to 'Categories', categories_path
+
+  -#- if user_signed_in?
+  -#  %li
+  -#    = link_to 'Edit account', edit_user_registration_path
+  -#  - if current_user.has_role? :admin
+  -#    %li
+  -#      = link_to 'Admin', users_path

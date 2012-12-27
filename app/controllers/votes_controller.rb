@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  before_filter :authenticate_user!, :only => [:index, :destroy, :edit, :update, :show]
   # GET /votes
   # GET /votes.json
   def index
