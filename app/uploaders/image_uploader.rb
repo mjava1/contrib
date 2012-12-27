@@ -11,8 +11,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  #storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -53,3 +53,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
 end
+
+CarrierWave.configure do |config|
+  config.fog_credentials = {
+      :provider           => 'Rackspace',
+      :rackspace_username => 'mjava1',
+      :rackspace_api_key  => '8fd6f68091a31cb7fe2050e9f7eb01f5'
+  }
+  config.fog_directory = 'CompApp'
+  config.asset_host = "http://e7c11a37cf9e3a2e2814-fb834a9d289abb210fde191e6f29ac16.r70.cf1.rackcdn.com"
+end
+
