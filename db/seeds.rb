@@ -17,8 +17,16 @@
 #puts 'user: ' << user.name
 #user.add_role :admin
 
-puts 'CATEGORIES'
-YAML.load(ENV['CATEGORIES']).each do |category|
+#puts 'CATEGORIES'
+#YAML.load(ENV['CATEGORIES']).each do |category|
+#  Category.find_or_create_by_name({ :name => category }, :without_protection => true)
+#  puts 'category: ' << category
+#end
+#
+categories = ["Free range", "Local", "Organic", "Vegetarian", "Eco-cleaners", "Recycling", "Composting", "Eco-packaging", "Sustainable Fish", "Food rescue", "BYO containers", "Fair trade"]
+categories.each do |category|
   Category.find_or_create_by_name({ :name => category }, :without_protection => true)
   puts 'category: ' << category
 end
+#Category.find_or_create_by_name({ :name => "Free range" }, :without_protection => true)
+#puts ""
