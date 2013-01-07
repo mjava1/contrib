@@ -14,6 +14,7 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
+    @vote = Vote.new
     @entry = Entry.find(params[:id])
 
     respond_to do |format|
@@ -83,11 +84,17 @@ class EntriesController < ApplicationController
   end
 
   def vote
-    value = 1
-    @entry = Entry.find(params[:id])
 
-    @vote = Vote.create(:name => "Defaulti", :email => "b@a.com")
-    @entry.add_evaluation(:votes, value, @vote)
-    redirect_to :back, notice: "Thanks for voting"
+    @vote = Vote.new(params[:vote])
+    @entry = Entry.find(params[:id])
+    @vote.entry_id = @entry.id
+
+    if @vote.save
+      @entry.add_evaluation(:votes, 1, @vote)
+      flash[:notice] = "Thanks for voting!"
+      redirect_to :action => :show, :id => @entry.id
+    else
+      render :action => :show
+    end
   end
 end

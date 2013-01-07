@@ -1,7 +1,7 @@
-%p#notice= notice
+-#%p#notice= notice
 
 = image_tag(@entry.image_url.to_s, :class =>"img-polaroid")
-= link_to "vote", vote_entry_path(@entry), method: "post", :class => "btn btn-small"
+-#= link_to "vote", vote_entry_path(@entry), method: "post", :class => "btn btn-small"
 
 - if user_signed_in?
   = "(" + pluralize(@entry.reputation_for(:votes).to_i, "vote") + ")"
@@ -10,8 +10,7 @@
   %b Name:
   = @entry.name
 %p
-  %b Email:
-  = @entry.email
+
 %p
   %b Caption:
   = @entry.caption
@@ -24,4 +23,13 @@
 
 -#= link_to 'Edit', edit_entry_path(@entry)
 -#\|
-= link_to 'Back', entries_path
+
+= simple_form_for(@vote, :url => vote_entry_path(@entry)) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name, :required => true
+    = f.input :email
+    = f.button :submit, 'Vote'
+-#
+-#= link_to 'Back', entries_path
