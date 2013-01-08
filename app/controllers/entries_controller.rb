@@ -15,7 +15,7 @@ class EntriesController < ApplicationController
   # GET /entries/1.json
   def show
     @vote = Vote.new
-    @entry = Entry.find(params[:id])
+    @entry = Entry.find(params[:id], :include => :category)
 
     respond_to do |format|
       format.html # show.html.erb

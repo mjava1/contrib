@@ -16,13 +16,7 @@
   = @entry.caption
 %p
   %b Category:
-  = @entry.category_id
--#%p
--#  %b Image:
--#  = @entry.image
-
--#= link_to 'Edit', edit_entry_path(@entry)
--#\|
+  = @entry.category.name
 
 = simple_form_for(@vote, :url => vote_entry_path(@entry)) do |f|
   = f.error_notification
