@@ -6,7 +6,9 @@ Compapp::Application.routes.draw do
     member{ post :vote }
   end
 
-  resources :categories
+  resources :categories do
+    member{ get :entries }
+  end
 
 
   authenticated :user do

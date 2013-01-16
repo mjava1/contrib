@@ -18,6 +18,15 @@
   %b Category:
   = @entry.category.name
 
+- if user_signed_in?
+  %p
+    %b IP:
+    = @entry.ip
+  %p
+    %b Approved:
+    = @entry.approved
+
+
 = simple_form_for(@vote, :url => vote_entry_path(@entry)) do |f|
   = f.error_notification
 

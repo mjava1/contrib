@@ -43,6 +43,7 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     @entry = Entry.new(params[:entry])
+    @entry.ip = request.remote_ip
 
     respond_to do |format|
       if @entry.save
@@ -86,6 +87,8 @@ class EntriesController < ApplicationController
   def vote
 
     @vote = Vote.new(params[:vote])
+    @vote.ip = request.remote_ip
+
     @entry = Entry.find(params[:id])
     @vote.entry_id = @entry.id
 

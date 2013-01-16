@@ -7,6 +7,7 @@
     %th Email
     %th Caption
     %th Category
+    %th IP
     %th
     %th
     %th
@@ -18,6 +19,7 @@
       %td= entry.email
       %td= entry.caption
       %td= entry.category_id
+      %td= entry.ip
 
       %td= link_to 'Show', entry
       %td= link_to 'Edit', edit_entry_path(entry)

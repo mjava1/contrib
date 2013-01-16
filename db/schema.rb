@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130107230133) do
+ActiveRecord::Schema.define(:version => 20130110205451) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(:version => 20130107230133) do
     t.string   "caption"
     t.integer  "category_id"
     t.string   "image"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "ip"
+    t.boolean  "approved",    :default => false
   end
 
   add_index "entries", ["email"], :name => "index_entries_on_email", :unique => true
@@ -119,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20130107230133) do
     t.integer  "entry_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "ip"
   end
 
   add_index "votes", ["email"], :name => "index_votes_on_email", :unique => true

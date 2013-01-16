@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:index, :destroy, :edit, :update, :show, :new, :create]
 
   # GET /categories
   # GET /categories.json
@@ -9,6 +10,19 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @categories }
+    end
+  end
+
+  # GET /categories/1/entries
+  # GET /categories/1/entries.json
+  def entries
+    @category = Category.find(params[:id])
+
+    @entries_by_category = Entry.find_all_by_category_id(@category.id, :order =>"created_at DESC")
+
+    respond_to do |format|
+      format.html # entries.html.erb
+      format.json { render json: @category }
     end
   end
 
