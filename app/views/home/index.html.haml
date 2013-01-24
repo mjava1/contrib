@@ -4,12 +4,9 @@
     .span6
       =link_to image_tag("client-cat-" + category[1] + ".png"), entries_category_path(category[0])
 
-    .span2.offset1
+    .span2.offset4
       %h5.pull-right
         latest 5 entries
-
-    .span3
-      =link_to "SUBMIT ENTRY", new_entry_path, :class => "btn btn-large btn-primary pull-right"
 
   %ul.gallery.img-polaroid
     - entries.each_with_index do |entry, i|
@@ -17,7 +14,11 @@
     -#Limit to the most recent 6 entries
     - break if i == 5
       %li
-        =link_to image_tag(entry.image_url.to_s, :class =>"img-polaroid"), entry
+        .gallery-item
+          .gallery-img
+            =link_to image_tag(entry.image_url.to_s, :class =>"img-polaroid"), entry
+          .gallery-vote
+            =link_to "VOTE", entries_category_path(category[0]), method: "get", :class => "btn btn-small btn-block btn-info"
 
 
     =link_to "more...", entries_category_path(category[0]), method: "get", :class => "btn btn-small"
