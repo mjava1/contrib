@@ -14,6 +14,12 @@
   padding: 0px 10px 10px 10px;
 }
 
+.category-header
+{
+  padding-top: 40px;
+  margin-bottom: 10px;
+}
+
 .client-header
 {
   margin-bottom: -44px;
@@ -25,4 +31,25 @@
   top: -55px;
   float: right;
   margin-right: 10px;
+}
+
+.gallery
+{
+  padding-top: 10px;
+  margin: 0px;
+  //border: 1px;
+  //border-style: solid;
+  //border-color: #000000;
+
+li
+  {
+    display: inline;
+    list-style-type: none;
+    padding-right: 10px;
+    img
+    {
+
+      width: 148px;
+    }
+  }
 }

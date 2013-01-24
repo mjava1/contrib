@@ -1,16 +1,23 @@
 
 - @entries_by_category.each do |category, entries|
+  .row.category-header
+    .span6
+      =link_to image_tag("client-cat-" + category[1] + ".png"), entries_category_path(category[0])
 
-  %br
-  =link_to category[1], entries_category_path(category[0])
-  %ul
-  - entries.each_with_index do |entry, i|
+    .span2.offset1
+      %h5.pull-right
+        latest 5 entries
 
-  -#Limit to the most recent 6 entries
-  - break if i == 5
-    %li
-      =link_to image_tag(entry.image_url.to_s, :class =>"img-polaroid", :size => "100x100"), entry
+    .span3
+      =link_to "SUBMIT ENTRY", new_entry_path, :class => "btn btn-large btn-primary pull-right"
 
-    %br
-  =link_to "More...", entries_category_path(category[0]), method: "get", :class => "btn btn-small"
-  %br
+  %ul.gallery.img-polaroid
+    - entries.each_with_index do |entry, i|
+
+    -#Limit to the most recent 6 entries
+    - break if i == 5
+      %li
+        =link_to image_tag(entry.image_url.to_s, :class =>"img-polaroid"), entry
+
+
+    =link_to "more...", entries_category_path(category[0]), method: "get", :class => "btn btn-small"
