@@ -18,19 +18,14 @@
         .row.client-header
 
           =image_tag("client-header.png")
-          =link_to "SUBMIT ENTRY", new_entry_path, :class => "btn btn-large btn-primary client-header-submit"
+          -if(@show_submit)
+            =link_to "SUBMIT ENTRY", new_entry_path, :class => "btn btn-large btn-primary client-header-submit"
 
-
-        .row.comp-desc
-          %h3
-            Competition Text BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH
-            BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH
-
-        -#.row -- ORIGINAL
-        -#  .span12
-        -#    = render 'layouts/messages'
-        -#    = yield
-
+        -if(@show_comp_desc)
+          .row.comp-desc
+            %h3
+              Competition Text BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH
+              BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLA
 
         =yield
 
