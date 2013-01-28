@@ -11,5 +11,10 @@ module ApplicationHelper
     HTML
     html.html_safe
   end
-  
+
+  def category_image_link(params)
+    category_id = params[:category_id]
+    category_name = params[:category_name].tr(' ', '-').downcase
+    link_to image_tag("client-cat-" + category_name + ".png"), entries_category_path(category_id)
+  end
 end

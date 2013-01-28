@@ -15,6 +15,7 @@ class EntriesController < ApplicationController
   # GET /entries/1.json
   def show
     @vote = Vote.new
+    @show_submit = true
     @entry = Entry.find(params[:id], :include => :category)
 
     respond_to do |format|

@@ -1,38 +1,40 @@
--#%p#notice= notice
+.row.category-header
+  .span6
+    =category_image_link(:category_name => @entry.category.name, :category_id => @entry.category.id)
 
-= image_tag(@entry.image_url.to_s, :class =>"img-polaroid")
--#= link_to "vote", vote_entry_path(@entry), method: "post", :class => "btn btn-small"
+.row
+  .span8
+    = image_tag(@entry.image_url.to_s, :class =>"img-polaroid")
+    %p
+      %b By:
+      = @entry.name
+  .span3.img-polaroid
+    -if user_signed_in?
+      = "(" + pluralize(@entry.reputation_for(:votes).to_i, "vote") + ")"
 
-- if user_signed_in?
-  = "(" + pluralize(@entry.reputation_for(:votes).to_i, "vote") + ")"
+    - if user_signed_in?
+      %p
+        %b IP:
+        = @entry.ip
+      %p
+        %b Approved:
+        = @entry.approved
 
-%p
-  %b Name:
-  = @entry.name
-%p
+    %b PLEASE NOTE ONLY ONE VOTE PER EMAIL ADDRESS
+    = simple_form_for(@vote, :url => vote_entry_path(@entry)) do |f|
+      = f.error_notification
 
-%p
-  %b Caption:
-  = @entry.caption
-%p
-  %b Category:
-  = @entry.category.name
+      .form-inputs
+        = f.input :name, :required => true
+        = f.input :email
+        = f.button :submit, 'Vote', :class => 'fff'
 
-- if user_signed_in?
-  %p
-    %b IP:
-    = @entry.ip
-  %p
-    %b Approved:
-    = @entry.approved
+    %small
+      Note: By entering a vote it is deemed that you accept the competitions terms and conditions.
+.row
+  .span4.offset8.img-polaroid
+    %p
+      %b Caption:
+      = @entry.caption
+    %p
 
-
-= simple_form_for(@vote, :url => vote_entry_path(@entry)) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :name, :required => true
-    = f.input :email
-    = f.button :submit, 'Vote'
--#
--#= link_to 'Back', entries_path

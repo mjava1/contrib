@@ -2,7 +2,7 @@
 - @entries_by_category.each do |category, entries|
   .row.category-header
     .span6
-      =link_to image_tag("client-cat-" + category[1] + ".png"), entries_category_path(category[0])
+      =category_image_link(:category_name => category[1], :category_id => category[0])
 
     .span2.offset4
       %h5.pull-right
