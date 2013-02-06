@@ -1,25 +1,7 @@
-
-- @entries_by_category.each do |category, entries|
-  .row.category-header
-    .span6
-      =category_image_link(:category_name => category[1], :category_id => category[0])
-
-    .span2.offset4
-      %h5.pull-right
-        latest 5 entries
-
-  .gallery.img-polaroid
-    %ul
-      - entries.each_with_index do |entry, i|
-
-      -#Limit to the most recent 6 entries
-      - break if i == 5
-        %li
-          .gallery-item
-            .gallery-img
-              =link_to image_tag(entry.image_url.to_s, :class =>"img-polaroid"), entry
-            .gallery-vote
-              =link_to "VOTE", entry, method: "get", :class => "btn btn-small btn-block "
-
-    .gallery-more
-      =link_to "more...", entries_category_path(category[0]), method: "get"
+.gallery.img-polaroid
+  %ul
+    - @entries.each_with_index do |entry, i|
+      %li
+        .gallery-item
+          .gallery-img
+            =link_to image_tag(entry.image_url.to_s, :class =>"img-polaroid"), entry

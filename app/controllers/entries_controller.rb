@@ -14,9 +14,9 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
-    @vote = Vote.new
+
     @show_submit = true
-    @entry = Entry.find(params[:id], :include => :category)
+    @entry = Entry.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,6 +44,8 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     @entry = Entry.new(params[:entry])
+    @entry.caption = "Dummy"
+    @entry.category_id = 1
     @entry.ip = request.remote_ip
 
     respond_to do |format|
