@@ -1,7 +1,11 @@
 
 .row
-  .span8
+  .span1
+    #shareme
+  .span10
     = image_tag(@entry.image_url.to_s, :class =>"img-polaroid")
     %p
       %b By:
       = @entry.name
+
+

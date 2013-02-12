@@ -2,30 +2,30 @@
 %html
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "Compapp"
+      %title= content_for?(:title) ? yield(:title) : "ContriBeauty"
       %meta{:content => content_for?(:description) ? yield(:description) : "Compapp", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
-    %header.navbar.navbar-fixed-top
+    %header.navbar.navbar-fixed-top.navbar-inverse
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
     #main{:role => "main"}
       .container
         .row.client-header
+          =link_to image_tag("client-header.png"), root_path
 
-          =image_tag("client-header.png")
           -if(@show_submit)
             =link_to "SUBMIT ENTRY", new_entry_path, :class => "btn btn-large btn-primary client-header-submit"
 
         -if(@show_comp_desc)
           .row.comp-desc
             %h3
-              Competition Text BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH
-              BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLAH BLH BLAH BLA
+              Contribeauty takes organisations with important information or data to share
+              and partners them with design thinkers and designers to create infographical content worth sharing.
 
         =yield
 
